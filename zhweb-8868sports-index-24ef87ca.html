@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简明指南 · 8868体育</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fcedd3 0%, #fbe3cb 40%, #f8d9b8 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+        .page-wrapper {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* 顶部导航 */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+            background: rgba(255, 248, 240, 0.75);
+            backdrop-filter: blur(6px);
+            padding: 0.8rem 1.8rem;
+            border-radius: 48px;
+            box-shadow: 0 6px 16px rgba(150, 90, 40, 0.08);
+            margin-bottom: 2.5rem;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+            color: #814d2b;
+            background: #fae7d4;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.95rem;
+            color: #4d3a2b;
+        }
+        .nav-links span {
+            cursor: default;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .nav-links span:hover {
+            border-bottom-color: #b87c53;
+        }
+
+        /* 通用卡片 */
+        .card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 30px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 12px 28px -8px rgba(130, 70, 30, 0.12);
+            margin-bottom: 2.2rem;
+            transition: box-shadow 0.15s;
+        }
+        .card-soft {
+            background: rgba(255, 248, 240, 0.65);
+            backdrop-filter: blur(4px);
+        }
+
+        /* hero 区域 */
+        .hero-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .hero-text {
+            flex: 2.2;
+            min-width: 260px;
+        }
+        .hero-text h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            line-height: 1.25;
+            color: #3f2c1c;
+            margin-bottom: 0.75rem;
+        }
+        .hero-text h1 small {
+            display: block;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #785a3e;
+            margin-top: 0.3rem;
+            letter-spacing: 0.2px;
+        }
+        .hero-text p {
+            color: #4c3827;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            max-width: 36em;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: #b87c53;
+            color: white;
+            font-weight: 500;
+            padding: 0.6rem 2rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 8px rgba(150, 80, 30, 0.15);
+            transition: 0.2s;
+        }
+        .hero-cta:hover {
+            background: #a06a44;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(120, 70, 30, 0.2);
+        }
+        .hero-visual {
+            flex: 1.2;
+            min-width: 180px;
+            background: #f7e6d4;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            color: #5f3f28;
+            font-weight: 500;
+            letter-spacing: 1px;
+            background-image: radial-gradient(circle at 30% 30%, #f3dcc7 0%, #e7cbb2 100%);
+        }
+
+        /* 三场景模块 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .scene-card {
+            background: #fffbf7;
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 6px 14px rgba(100, 60, 30, 0.06);
+            border: 1px solid #f7e6d8;
+            transition: 0.2s;
+        }
+        .scene-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 24px -6px rgba(110, 60, 20, 0.12);
+        }
+        .scene-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #533d2b;
+            margin-bottom: 0.5rem;
+            border-left: 5px solid #c99873;
+            padding-left: 0.75rem;
+        }
+        .scene-card p {
+            color: #4f3a29;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* FAQ摘要 + 说明 */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1rem 0 0.5rem;
+        }
+        .faq-item {
+            background: #fcf3e9;
+            padding: 1rem 1.2rem;
+            border-radius: 24px;
+        }
+        .faq-item strong {
+            display: block;
+            color: #5f3e27;
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .faq-item span {
+            font-size: 0.9rem;
+            color: #4c3827;
+        }
+        .footnote {
+            margin-top: 1.8rem;
+            font-size: 0.9rem;
+            color: #5b4432;
+            line-height: 1.6;
+            border-top: 1px solid #ecdac9;
+            padding-top: 1.5rem;
+        }
+        .footnote a {
+            color: #8b5f3d;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+        .footnote a:hover {
+            color: #563a25;
+        }
+
+        /* 底部 */
+        .footer-note {
+            text-align: center;
+            padding: 1rem 0 0.3rem;
+            color: #785e47;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+            .nav-bar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1rem 1.2rem;
+                border-radius: 32px;
+            }
+            .nav-links {
+                justify-content: space-around;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+            .hero-text h1 {
+                font-size: 1.9rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            .scene-card {
+                padding: 1.2rem 1rem;
+            }
+            .faq-item {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 导航 -->
+    <nav class="nav-bar">
+        <div class="nav-logo">8868体育 · 简明</div>
+        <div class="nav-links">
+            <span>概览</span>
+            <span>场景</span>
+            <span>说明</span>
+            <span>常见问题</span>
+        </div>
+    </nav>
+
+    <!-- hero + 介绍 -->
+    <div class="hero-row">
+        <div class="hero-text card" style="margin-bottom:0;">
+            <h1>8868体育<small>轻量导航 · 快速了解</small></h1>
+            <p>面向日常信息查阅与平台导航场景，<a href="https://zhweb-8868sports.com" style="color:#8b5f3d;font-weight:600;text-decoration:underline;text-underline-offset:3px;">8868体育</a>提供结构清晰的功能分区与内容入口。页面基于简洁指引理念设计，帮助你在较短时间内定位所需模块，减少浏览折返。</p>
+            <p>本节为全局简介：覆盖平台定位、访问方式与内容组织逻辑。后续模块进一步展开典型场景与注意事项。</p>
+            <a href="https://zhweb-8868sports.com" class="hero-cta">8868体育</a>
+        </div>
+        <div class="hero-visual card" style="margin-bottom:0;">
+            <span>场景 · 指引 · 提示</span>
+        </div>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="grid-3">
+        <div class="scene-card">
+            <h3>信息检索</h3>
+            <p>通过分类标签与关键词索引快速筛选内容。适合需要对比活动、查阅规则或浏览更新的用户。每项条目均附带简短摘要与时间标记。</p>
+        </div>
+        <div class="scene-card">
+            <h3>功能导航</h3>
+            <p>主菜单聚合常用路径：个人中心、消息、偏好设置等。层级不超过两层，降低操作成本。支持键盘快捷键与返回记忆。</p>
+        </div>
+        <div class="scene-card">
+            <h3>访问说明</h3>
+            <p>建议使用主流浏览器最新版本。部分交互依赖 JavaScript，请保持启用。移动端布局已适配，横竖屏均可正常浏览。</p>
+        </div>
+    </div>
+
+    <!-- 常见说明 + FAQ 摘要卡片 -->
+    <div class="card card-soft">
+        <h2 style="font-size:1.5rem;font-weight:600;color:#3f2c1c;margin-bottom:0.8rem;">常见说明 · 摘要</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <strong>页面加载异常？</strong>
+                <span>检查网络连接并刷新。如持续出现，可尝试清除浏览器缓存或切换网络环境。</span>
+            </div>
+            <div class="faq-item">
+                <strong>如何快速返回顶部？</strong>
+                <span>大部分页面右下角设有浮动按钮，或直接按键盘 Home 键。</span>
+            </div>
+            <div class="faq-item">
+                <strong>内容更新频率？</strong>
+                <span>主要模块随平台迭代同步更新，建议定期浏览首页公告区域。</span>
+            </div>
+            <div class="faq-item">
+                <strong>多语言支持？</strong>
+                <span>当前以中文为主，部分区域提供英文摘要。后续视需求扩展。</span>
+            </div>
+        </div>
+        <div class="footnote">
+            <p>本页为独立介绍页，不代替原站功能。如需访问完整平台，请直接使用 <a href="https://zhweb-8868sports.com">8868体育</a> 主域名。所有说明基于当前版本整理，如有调整以线上实际内容为准。建议将常用页面加入书签以便快速定位。</p>
+            <p style="margin-top:0.6rem;">遇到疑问可先查阅常见问题区域；若仍无法解决，可通过站内反馈渠道提交描述。维护团队会在工作时段内跟进。</p>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        8868体育 · 导航式介绍页 &nbsp;|&nbsp; 内容仅供指引
+    </div>
+</div>
+</body>
+</html>
