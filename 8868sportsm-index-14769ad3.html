@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8868体育 — 简明指南 · 访问提醒</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f1f7f6;
+            color: #1f2e2b;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 主视觉 — 蓝绿色点缀 + 网格卡片感 */
+        .hero {
+            background: linear-gradient(145deg, #e3f0ed 0%, #cbe5df 100%);
+            border-radius: 32px;
+            padding: 40px 32px 36px;
+            margin-bottom: 40px;
+            box-shadow: 0 6px 20px rgba(0, 50, 50, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -40px; right: -40px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle at 30% 30%, rgba(0,160,140,0.08), transparent 70%);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #0d4a44;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #2b5850;
+            max-width: 680px;
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: #0f6b60;
+            color: #f0fcf8;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            margin-top: 6px;
+        }
+
+        /* 卡片网格 — 信息卡片式 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .card {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 28px 24px 24px;
+            box-shadow: 0 8px 24px rgba(0, 70, 60, 0.05);
+            transition: transform 0.18s ease, box-shadow 0.2s;
+            border: 1px solid #dcebe6;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(0, 100, 85, 0.08);
+            border-color: #b6d4cc;
+        }
+        .card .icon {
+            font-size: 1.9rem;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: #e5f3ef;
+            width: 48px; height: 48px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f6b60;
+        }
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #124a42;
+            letter-spacing: -0.2px;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #2c423e;
+            flex: 1;
+        }
+        .card .tag {
+            display: inline-block;
+            background: #edf6f3;
+            color: #0a5a4f;
+            border-radius: 40px;
+            padding: 2px 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 12px;
+            align-self: flex-start;
+        }
+
+        /* 适合人群卡片（也是网格一部分） */
+        .card.audience {
+            background: #eaf8f4;
+            border-left: 4px solid #0f7f70;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 32px 28px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 16px rgba(0,60,50,0.03);
+            border: 1px solid #dfece7;
+        }
+        .link-paragraph p {
+            font-size: 1rem;
+            color: #1e3a35;
+            margin-bottom: 16px;
+        }
+        .link-paragraph a {
+            color: #0b6d5e;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #b6dbd0;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .link-paragraph a:hover {
+            border-bottom-color: #0b6d5e;
+            color: #044a3e;
+        }
+
+        /* FAQ 摘要 — 简洁提示 */
+        .faq-mini {
+            background: #f4fcf9;
+            border-radius: 28px;
+            padding: 24px 28px;
+            margin-bottom: 40px;
+            border: 1px solid #cce2db;
+        }
+        .faq-mini h4 {
+            font-size: 1.1rem;
+            color: #13554b;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .faq-mini details {
+            margin-bottom: 12px;
+            padding: 8px 0 6px 8px;
+            border-left: 3px solid #b0d5cb;
+        }
+        .faq-mini summary {
+            font-weight: 500;
+            color: #1a5348;
+            cursor: pointer;
+            padding: 4px 0;
+            font-size: 0.95rem;
+        }
+        .faq-mini summary::marker {
+            color: #0f7a6a;
+        }
+        .faq-mini details p {
+            margin-top: 8px;
+            padding-left: 8px;
+            color: #2b4a43;
+            font-size: 0.9rem;
+        }
+
+        /* footer & 小字 */
+        .footnote {
+            border-top: 1px solid #d4e5de;
+            padding-top: 28px;
+            margin-top: 12px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #3e6159;
+            letter-spacing: 0.2px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        .footnote span {
+            opacity: 0.7;
+        }
+
+        /* 移动端友好 */
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .hero { padding: 28px 20px; }
+            .hero h1 { font-size: 1.7rem; }
+            .card-grid { gap: 16px; }
+            .card { padding: 22px 18px; }
+            .link-paragraph { padding: 24px 18px; }
+            .faq-mini { padding: 18px 18px; }
+        }
+        @media (max-width: 420px) {
+            .hero .sub { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 主视觉 + 简明指南 -->
+        <section class="hero">
+            <h1>8868体育 · 简明指南</h1>
+            <div class="sub">一份围绕访问路径与信息组织的轻量化导航，帮助你快速了解平台结构、内容类型与使用边界。</div>
+            <div class="badge">访问提醒 · 知识向</div>
+        </section>
+
+        <!-- 信息卡片：用途、场景、特点  -->
+        <div class="card-grid">
+            <div class="card">
+                <div class="icon">📋</div>
+                <h3>用途卡片</h3>
+                <p>聚合体育资讯、赛事数据、实时比分与深度内容。适合赛前分析、赛后复盘以及日常信息获取，界面简洁，数据更新节奏稳定。</p>
+                <span class="tag">信息整合</span>
+            </div>
+            <div class="card">
+                <div class="icon">🧭</div>
+                <h3>场景索引</h3>
+                <p>无论是移动端碎片阅读，还是桌面端深度浏览，卡片式布局与导航层级均经过适配。同时支持多语言内容切换，降低信息摩擦。</p>
+                <span class="tag">多端适配</span>
+            </div>
+            <div class="card audience">
+                <div class="icon">👥</div>
+                <h3>适合人群</h3>
+                <p>体育爱好者、数据分析型用户、内容研究者、以及希望系统化了解体育赛事动态的普通浏览者。无需专业背景，信息呈现偏知识型。</p>
+                <span class="tag">低门槛</span>
+            </div>
+        </div>
+
+        <!-- 自然链接段落：从简明指南与访问提醒切入 -->
+        <div class="link-paragraph">
+            <p>在信息获取过程中，保持访问路径的简洁与可靠是第一步。对于体育内容聚合类平台，建议优先通过主站域名进入内容索引。例如，直接访问 <a href="https://8868sportsm.com">8868体育</a> 即可看到最新赛事卡片与导航入口，无需额外跳转或中间页。该站点采用轻量化前端结构，加载速度较快，适合日常使用。</p>
+            <p>同时，建议留意浏览器地址栏的域名拼写，避免仿冒或相似域名。官方域名始终为 <strong>8868sportsm.com</strong>，页面底部也会标注相关标识。如果你在访问过程中遇到内容加载异常或页面布局偏移，可尝试清除缓存或更换网络环境后重试——多数情况下与本地网络设置相关，平台本身保持稳定。</p>
+            <p>另外，平台内所有数据卡片均标注数据来源与更新时间，部分深度内容需要展开交互组件。整体设计遵循「信息前置，操作后置」的逻辑，让浏览者先看到概览，再决定是否深入。这也是本次简明指南希望传递的核心：有条理地获取，有意识地判断。</p>
+        </div>
+
+        <!-- FAQ摘要 / 访问提醒 -->
+        <div class="faq-mini">
+            <h4>⚡ 访问提醒 & 常见摘要</h4>
+            <details>
+                <summary>为什么选择直接访问主站而不是第三方入口？</summary>
+                <p>主站域名 <strong>8868sportsm.com</strong> 提供未经中介的原始内容，避免信息延迟或样式丢失，同时减少中间页跳转带来的加载链过长问题。</p>
+            </details>
+            <details>
+                <summary>移动端访问时需要额外设置吗？</summary>
+                <p>不需要。站点已内置响应式网格与触控优化，横竖屏皆可正常浏览。唯建议保持系统字体为默认，以获得最佳中文渲染效果。</p>
+            </details>
+            <details>
+                <summary>内容更新频率如何？可以信任数据准确性吗？</summary>
+                <p>赛事数据与比分信息通常具备分钟级延迟说明，而专题类文章则按赛季或事件周期更新。平台会标注参考信息，用户可交叉核对。</p>
+            </details>
+        </div>
+
+        <!-- 底部 -->
+        <div class="footnote">
+            <span>信息卡片式 · 蓝绿点缀</span>
+            <span>8868sportsm.com</span>
+            <span>简明指南 · 访问提醒</span>
+        </div>
+    </div>
+</body>
+</html>
